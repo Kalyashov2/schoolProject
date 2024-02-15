@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: career-guidance-bot
+
+
+settings:
+  bot:
+    name: "CareerGuidanceSchoolBot"
+    token: "6926930237:AAEHE87LhAux0osCQvGNhnCFH0y-83HnBU0"
+  messages:
+    unknown-command: "Неизвестная команда\uD83E\uDD14"
