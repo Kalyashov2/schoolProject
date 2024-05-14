@@ -1,16 +1,18 @@
 package ru.career.guidance.service.command;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.career.guidance.action.CommandActions;
 import ru.career.guidance.business.command.Command;
 
 @Service
-@RequiredArgsConstructor
 public class CommandService {
 
     public final CommandRegister commandRegister;
+
+    public CommandService(CommandRegister commandRegister) {
+        this.commandRegister = commandRegister;
+    }
 
     public CommandActions handleCommand(Update update) {
         var command = Command.UNKNOWN;

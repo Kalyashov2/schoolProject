@@ -1,7 +1,5 @@
 package ru.career.guidance;
 
-import lombok.RequiredArgsConstructor;
-import lombok.val;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -41,7 +39,7 @@ public class CareerGuidanceBot extends TelegramLongPollingBot {
 
     public void processActions(List<BotAction<?>> actions) {
         try {
-            for (val action : actions) {
+            for (var action : actions) {
                 log.info(action.getAction().toString());
 
                 switch (action.getActionType()) {

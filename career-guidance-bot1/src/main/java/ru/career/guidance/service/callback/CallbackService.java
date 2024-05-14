@@ -1,7 +1,5 @@
 package ru.career.guidance.service.callback;
 
-import lombok.RequiredArgsConstructor;
-import lombok.val;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -10,7 +8,6 @@ import ru.career.guidance.action.DeleteMessageAction;
 import ru.career.guidance.action.SendMessageAction;
 import ru.career.guidance.business.callback.CallbackAnswerType;
 import ru.career.guidance.service.answer.AnswerService;
-import ru.career.guidance.service.command.builder.SendWordsMessageActionBuilder;
 import ru.career.guidance.service.question.QuestionService;
 import ru.career.guidance.util.SendMessageBuilder;
 
@@ -18,21 +15,24 @@ import java.util.List;
 
 
 @Component
-@RequiredArgsConstructor
 public class CallbackService {
 
-    private final SendWordsMessageActionBuilder messageActionBuilder;
     private final QuestionService questionService;
     private final AnswerService answerService;
 
+    public CallbackService(QuestionService questionService, AnswerService answerService) {
+        this.questionService = questionService;
+        this.answerService = answerService;
+    }
+
     public CommandActions handleCallback(Update update) {
-        val callbackQuery = update.getCallbackQuery();
-        val chatId = callbackQuery.getMessage().getChatId();
-        val messageId = callbackQuery.getMessage().getMessageId();
-        val userId = callbackQuery.getFrom().getId();
-        val callbackRaw = callbackQuery.getData();
-        val commandActions = new CommandActions();
-        val callbackType = CallbackAnswerType.fromValue(callbackRaw);
+        var callbackQuery = update.getCallbackQuery();
+        var chatId = callbackQuery.getMessage().getChatId();
+        var messageId = callbackQuery.getMessage().getMessageId();
+        var userId = callbackQuery.getFrom().getId();
+        var callbackRaw = callbackQuery.getData();
+        var commandActions = new CommandActions();
+        var callbackType = CallbackAnswerType.fromValue(callbackRaw);
 
         handleCallback(callbackType, commandActions, messageId, chatId, callbackRaw);
 

@@ -1,6 +1,5 @@
 package ru.career.guidance.repository;
 
-import lombok.val;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
